@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="SakilaN">
+  <meta name="Keywords" content="StopWatch">
+  <meta name="Description" content="StopWatch">
+  <title>Stop Watch</title>
+  <script src="./build/react.js"></script>
+  <script src="./build/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+ </head>
+ <body>
+	 <div id="rootStopWatch"></div>
+	 <script type="text/babel">
+	    var StopWatchComponent = React.createClass({
+			render: function (){
+				return (
+				   <p>
+				      Time now is {this.props.date.toTimeString()}
+				   </p>
+				);
+			}
+		});
+
+		ReactDOM.render (
+			<StopWatchComponent date={new Date()} />,
+		    document.getElementById('rootStopWatch')
+		);
+     </script>
+
+ </body>
+</html>
