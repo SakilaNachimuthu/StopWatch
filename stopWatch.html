@@ -15,6 +15,7 @@
 	 <div id="rootStopWatch"></div>
 	 <script type="text/babel">
 	    var StopWatchComponent = React.createClass({
+			/* set the Initial state */
 			getInitialState: function (){
 				return {
 					date: new Date().getTime(),
@@ -23,9 +24,11 @@
 					timer: null,
 				};
 			},
+			/* set the elapsed time */
 			setElapsedTime: function(){
 				this.state.elapsed = new Date().getTime()-this.state.date;
 			},
+			/* returns the elapsed time split into hours, minutes, seconds and milliseconds */
 			getElapsedTime: function(){
 				var hour = Math.round(Math.floor(this.state.elapsed/1000/60/60)%24);
 				var minute = Math.round(Math.floor(this.state.elapsed/1000/60)%60);
@@ -33,6 +36,7 @@
 				var milliseconds = this.state.elapsed%1000;
 				return hour + ":" + minute + ":" + seconds + ":" + milliseconds;
 			},
+			/* sets the component state for start and stop fucntionality */
 			handleTimerAction: function(){
 				if(!this.state.isStart) {
 				    this.state.date = new Date().getTime() - this.state.elapsed;
@@ -49,6 +53,7 @@
 					});
 				}
 			},
+			/* resets the timer */
 			resetTimer: function(){
 				clearInterval(this.state.timer);
 				this.setState({
@@ -60,10 +65,10 @@
 			render: function (){
 				return (
 				   <div>
-				   <h1>Elapsed Time now is {this.getElapsedTime()}</h1>
-				   <button onClick={this.handleTimerAction}>Start</button>
-				   <button onClick={this.handleTimerAction}>Stop</button>
-				   <button onClick={this.resetTimer}>Reset</button>
+						<h1>Elapsed Time now is {this.getElapsedTime()}</h1>
+						<button onClick={this.handleTimerAction}>Start</button>
+						<button onClick={this.handleTimerAction}>Stop</button>
+						<button onClick={this.resetTimer}>Reset</button>
 				   </div>
 				);
 			}
@@ -71,7 +76,7 @@
         setInterval(function() {
 		ReactDOM.render (
 			<StopWatchComponent/>,
-		    document.getElementById('rootStopWatch')
+		    document.body
 		);
 		}, 50);
      </script>
