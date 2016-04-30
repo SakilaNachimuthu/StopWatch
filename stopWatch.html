@@ -14,10 +14,15 @@
 	 <div id="rootStopWatch"></div>
 	 <script type="text/babel">
 	    var StopWatchComponent = React.createClass({
+			getInitialState: function (){
+				return {
+					date: new Date()
+				};
+			},
 			render: function (){
 				return (
 				   <p>
-				      Time now is {this.props.date.toTimeString()}
+				      Indian Time now is {this.state.date.toTimeString()}
 				   </p>
 				);
 			}
