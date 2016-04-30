@@ -16,22 +16,33 @@
 	    var StopWatchComponent = React.createClass({
 			getInitialState: function (){
 				return {
-					date: new Date()
+					date: new Date().getTime(),
+					elapsed: 0,
 				};
+			},
+			getElapsedTime: function(){
+				this.state.elapsed = new Date().getTime()-this.state.date;
+				var hour = Math.round(Math.floor(this.state.elapsed/1000/60/60)%24);
+				var minute = Math.round(Math.floor(this.state.elapsed/1000/60)%60);
+				var seconds = Math.round(Math.floor(this.state.elapsed/1000)%60);
+				var milliseconds = this.state.elapsed%1000;
+				return hour + ":" + minute + ":" + seconds + ":" + milliseconds;
 			},
 			render: function (){
 				return (
 				   <p>
-				      Indian Time now is {this.state.date.toTimeString()}
+				      Elapsed Time now is {this.getElapsedTime()}
 				   </p>
 				);
 			}
 		});
-
+		var start = new Date().getTime();
+        setInterval(function() {
 		ReactDOM.render (
-			<StopWatchComponent date={new Date()} />,
+			<StopWatchComponent/>,
 		    document.getElementById('rootStopWatch')
 		);
+		}, 50);
      </script>
 
  </body>
